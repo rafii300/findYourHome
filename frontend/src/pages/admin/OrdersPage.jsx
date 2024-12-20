@@ -41,11 +41,10 @@ function OrdersPage() {
                     <tr>
                       <th className="text-center">ID</th>
                       <th className="text-center">User</th>
-                      <th className="text-center">Products</th>
-                      <th className="text-center">Items</th>
                       <th className="text-center">Price</th>
                       <th className="text-center">Method</th>
                       <th className="text-center">Date</th>
+                      <th className="text-center">Pending</th>
                     </tr>
                   </thead>
 
@@ -54,11 +53,12 @@ function OrdersPage() {
                       <tr key={order.Id}>
                         <td className="text-center">{order.Id}</td>
                         <td className="text-center">{order.userId}</td>
-                        <td className="text-center">{order.products}</td>
-                        <td className="text-center">{order.items}</td>
                         <td className="text-center">{order.price}</td>
                         <td className="text-center">{order.method}</td>
                         <td className="text-center">{order.date}</td>
+                        <td className="text-center">
+                          {order.pending ? "True" : "False"}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

@@ -18,7 +18,7 @@ class ProductList(APIView):
 		field = f"-{by}" if sort == 'DESC' else by
 		try:
 			search = request.query_params['search']
-			products = Products.objects.filter(Q(name__contains=search) | Q(description__contains=search) | Q(brand__contains=search)).order_by(field) 
+			products = Products.objects.filter(Q(name__contains=search)).order_by(field) 
 			paginator = Paginator(products, page_size)
 			try:
 				products = paginator.page(page)

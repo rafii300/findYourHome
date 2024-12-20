@@ -19,9 +19,9 @@ function CreatProductPage() {
     description: "",
     price: 0,
     image: "",
-    brand: "",
-    category: "",
-    countInStock: 0,
+    rating: 0,
+    area: "",
+    available: true,
   };
 
   const [state, setState] = useState(initialState);
@@ -36,10 +36,9 @@ function CreatProductPage() {
     formData.append("name", state.name);
     formData.append("description", state.description);
     formData.append("price", Number(state.price));
-    formData.append("brand", state.brand);
-    formData.append("category", state.category);
-    formData.append("countInStock", Number(state.countInStock));
-    formData.append("rating", Math.round(Math.random() * 5));
+    formData.append("area", state.area);
+    formData.append("available", state.available === "True" ? true : false);
+    formData.append("rating", Math.round(Math.random() * 10) % 11);
 
     dispatch(createProduct(formData));
     setButtonPressd(true);
@@ -67,14 +66,14 @@ function CreatProductPage() {
         <AdminHeader />
         <Row className="justify-content-center px-5 py-3">
           <section className="py-3 d-flex flex-row justify-content-between align-items-center">
-            <h1>Create Product</h1>
+            <h1>Create Hotel</h1>
             <span>
               <Button
                 variant="dark"
                 size="lg"
                 onClick={() => navigate("/admin/products")}
               >
-                Products
+                Hotels
               </Button>
             </span>
           </section>
@@ -102,38 +101,24 @@ function CreatProductPage() {
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group className="p-2" controlId="brand">
-                <Form.Label className="fw-bold">Brand</Form.Label>
+              <Form.Group className="p-2" controlId="area">
+                <Form.Label className="fw-bold">Area</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter brand"
-                  value={state.brand}
-                  onChange={(e) =>
-                    setState({ ...state, brand: e.target.value })
-                  }
+                  placeholder="Enter area"
+                  value={state.area}
+                  onChange={(e) => setState({ ...state, area: e.target.value })}
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group className="p-2" controlId="countinstock">
-                <Form.Label className="fw-bold">Stock</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="Enter stock"
-                  value={state.countInStock}
-                  onChange={(e) =>
-                    setState({ ...state, countInStock: e.target.value })
-                  }
-                ></Form.Control>
-              </Form.Group>
-
-              <Form.Group className="p-2" controlId="category">
-                <Form.Label className="fw-bold">Category</Form.Label>
+              <Form.Group className="p-2" controlId="available">
+                <Form.Label className="fw-bold">Available</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter category"
-                  value={state.category}
+                  placeholder="Is available"
+                  value={state.available}
                   onChange={(e) =>
-                    setState({ ...state, category: e.target.value })
+                    setState({ ...state, available: e.target.value })
                   }
                 ></Form.Control>
               </Form.Group>

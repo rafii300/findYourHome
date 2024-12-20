@@ -7,7 +7,7 @@ function Product({ product }) {
 
   return (
     <Row className="py-2 justify-content-center border shadow-sm rounded">
-      <Row className="my-2 text-center">
+      <Row className="my-2 text-center justify-content-center">
         <Link
           className="text-dark text-decoration-none"
           to={`product/${product.Id}`}
@@ -19,7 +19,7 @@ function Product({ product }) {
           />
         </Link>
       </Row>
-      <Row>
+      <Row className="justify-content-center">
         <Row as="h4" className="justify-content-center">
           {product.name}
         </Row>
@@ -46,7 +46,7 @@ function Product({ product }) {
         <Row className="py-2">
           <Button
             variant="dark"
-            onClick={() => navigate(`/product/${product.Id}`)}
+            onClick={() => navigate(`product/${product.Id}`)}
           >
             Check Details
           </Button>

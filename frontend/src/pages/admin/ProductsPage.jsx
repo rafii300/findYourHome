@@ -84,7 +84,7 @@ function ProductsPage() {
                 onChange={(e) => setBy(e.target.value)}
               >
                 <option value="price">Price</option>
-                <option value="countInStock">Items</option>
+                <option value="Id">Id</option>
               </Form.Control>
             </Col>
             <Col md={2}>
@@ -120,9 +120,9 @@ function ProductsPage() {
                       <th className="text-center">ID</th>
                       <th className="text-center">Name</th>
                       <th className="text-center">Price</th>
-                      <th className="text-center">Category</th>
-                      <th className="text-center">Brand</th>
-                      <th className="text-center">In Stock</th>
+                      <th className="text-center">Rating</th>
+                      <th className="text-center">Area</th>
+                      <th className="text-center">Available</th>
                       <th className="text-center">Update</th>
                       <th className="text-center">Delete</th>
                     </tr>
@@ -136,9 +136,11 @@ function ProductsPage() {
                           <strong>{product.name}</strong>
                         </td>
                         <td className="text-center">{product.price}</td>
-                        <td className="text-center">{product.category}</td>
-                        <td className="text-center">{product.brand}</td>
-                        <td className="text-center">{product.countInStock}</td>
+                        <td className="text-center">{product.rating}</td>
+                        <td className="text-center">{product.area}</td>
+                        <td className="text-center">
+                          {product.available ? "True" : "False"}
+                        </td>
                         <td className="text-center">
                           <Button
                             type="submit"

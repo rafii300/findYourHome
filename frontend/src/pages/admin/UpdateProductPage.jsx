@@ -21,9 +21,9 @@ function UpdateProductPage() {
     description: product.description,
     price: product.price,
     image: "",
-    brand: product.brand,
-    category: product.category,
-    countInStock: product.countInStock,
+    area: product.area,
+    rating: product.rating,
+    available: product.available,
   };
 
   const [state, setState] = useState(initialState);
@@ -37,10 +37,9 @@ function UpdateProductPage() {
     formData.append("name", state.name);
     formData.append("description", state.description);
     formData.append("price", Number(state.price));
-    formData.append("brand", state.brand);
-    formData.append("category", state.category);
-    formData.append("countInStock", Number(state.countInStock));
-    formData.append("rating", Math.round(Math.random() * 5));
+    formData.append("area", state.area);
+    formData.append("available", state.available === "true" ? true : false);
+    formData.append("rating", state.rating % 11);
 
     dispatch(updateProduct(product.Id, formData));
     setButtonPressd(true);
@@ -103,49 +102,49 @@ function UpdateProductPage() {
                 </Col>
               </Form.Group>
 
-              <Form.Group as={Row} className="p-2" controlId="brand">
+              <Form.Group as={Row} className="p-2" controlId="area">
                 <Form.Label column sm="2" className="fw-bold">
-                  Brand
+                  Area
                 </Form.Label>
                 <Col sm={10}>
                   <Form.Control
                     type="text"
-                    placeholder="Enter brand"
-                    value={state.brand}
+                    placeholder="Enter area"
+                    value={state.area}
                     onChange={(e) =>
-                      setState({ ...state, brand: e.target.value })
+                      setState({ ...state, area: e.target.value })
                     }
                   ></Form.Control>
                 </Col>
               </Form.Group>
 
-              <Form.Group as={Row} className="p-2" controlId="countinstock">
+              <Form.Group as={Row} className="p-2" controlId="available">
                 <Form.Label column sm="2" className="fw-bold">
-                  Stock
+                  Available
+                </Form.Label>
+                <Col sm={10}>
+                  <Form.Control
+                    type="text"
+                    placeholder={state.available ? "True" : "False"}
+                    value={state.available}
+                    onChange={(e) =>
+                      setState({ ...state, available: e.target.value })
+                    }
+                  ></Form.Control>
+                </Col>
+              </Form.Group>
+
+              <Form.Group as={Row} className="p-2" controlId="rating">
+                <Form.Label column sm="2" className="fw-bold">
+                  Rating
                 </Form.Label>
                 <Col sm={10}>
                   <Form.Control
                     type="number"
-                    placeholder="Enter stock"
-                    value={state.countInStock}
+                    placeholder="Enter rating"
+                    value={state.rating}
                     onChange={(e) =>
-                      setState({ ...state, countInStock: e.target.value })
-                    }
-                  ></Form.Control>
-                </Col>
-              </Form.Group>
-
-              <Form.Group as={Row} className="p-2" controlId="category">
-                <Form.Label column sm="2" className="fw-bold">
-                  Category
-                </Form.Label>
-                <Col sm={10}>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter category"
-                    value={state.category}
-                    onChange={(e) =>
-                      setState({ ...state, category: e.target.value })
+                      setState({ ...state, rating: e.target.value })
                     }
                   ></Form.Control>
                 </Col>
