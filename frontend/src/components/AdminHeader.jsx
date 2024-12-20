@@ -98,7 +98,7 @@ function AdminHeader() {
               }}
             >
               <i className="bi bi-shop-window px-1" />
-              Shop
+              Home
             </NavLink>
           </Nav>
         </Container>

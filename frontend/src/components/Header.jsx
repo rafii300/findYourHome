@@ -45,7 +45,7 @@ function Header() {
               onClick={() => dispatch(getAllProducts(1, "ASC", "Id"))}
             >
               <i className="bi bi-shop-window px-2" />
-              Shop
+              Home
             </NavLink>
           </Navbar.Brand>
 
