@@ -75,7 +75,6 @@ class Cart(models.Model):
     userId = models.IntegerField(blank=False)
     productId = models.IntegerField(blank=False)
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
-    method = models.CharField(max_length=64, blank=False)
     date = models.DateField(auto_now_add=True)
 
     class Meta:

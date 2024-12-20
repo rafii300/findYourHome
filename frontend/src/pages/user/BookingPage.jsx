@@ -10,7 +10,6 @@ import {
 import { Navigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Initial } from "../../redux/slice/orderSlice";
-import { reduceProduct } from "../../redux/thunk/productThunk";
 import { createOrder, getOrderById } from "../../redux/thunk/orderThunk";
 import { deleteUserCart } from "../../redux/thunk/cartThunk";
 import Header from "../../components/Header";
@@ -25,12 +24,13 @@ function BookingPage() {
   const { loading, success, error, order_id, pending } = useSelector(
     (state) => state.order
   );
-  const { stored_list } = useSelector((state) => state.cart);
 
   const initalState = {
-    products: 0,
-    items: 0,
+    name: "None",
     price: 0,
+    method: "None",
+    area: "None",
+    rating: 0,
   };
   const order = Object.keys(location.state).length
     ? location.state
@@ -45,9 +45,9 @@ function BookingPage() {
       dispatch(
         createOrder({
           ...order,
-          price: order.price + 40,
           userId: current_user.Id,
-          method: "bkash",
+          price: order.price + 50,
+          method: order.method,
           pending: true,
         })
       );
@@ -80,19 +80,6 @@ function BookingPage() {
     return () => clearInterval(myInterval);
   }, [pending, buttonDisable]);
 
-  useEffect(() => {
-    if (orderSuccess) {
-      stored_list.map((element) => {
-        dispatch(
-          reduceProduct(
-            element.productId,
-            element.product.countInStock - element.items
-          )
-        );
-      });
-    }
-  }, [orderSuccess]);
-
   if (!Object.keys(current_user).length) return <Navigate to="/login" />;
   else {
     return (
@@ -114,7 +101,7 @@ function BookingPage() {
                 <h2>Payment Method:</h2>
               </ListGroup.Item>
               <ListGroup.Item>
-                <p>{"Method : Bkash"}</p>
+                <p>Method : {order.method}</p>
               </ListGroup.Item>
             </ListGroup>
           </Col>
@@ -123,30 +110,30 @@ function BookingPage() {
               <thead>
                 <tr>
                   <th colSpan={2}>
-                    <h2 className="py-2">Order Summary</h2>
+                    <h2 className="py-2">Booking Summary</h2>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Total Product</td>
-                  <td>{order.products}</td>
-                </tr>
-                <tr>
-                  <td>Total Items</td>
-                  <td>{order.items}</td>
+                  <td>Name</td>
+                  <td>{order.name}</td>
                 </tr>
                 <tr>
                   <td>Price</td>
                   <td>{order.price}</td>
                 </tr>
                 <tr>
-                  <td>Delivery Cost</td>
-                  <td>{order.items ? 40 : 0}</td>
+                  <td>Area</td>
+                  <td>{order.area}</td>
+                </tr>
+                <tr>
+                  <td>Rating</td>
+                  <td>{order.rating}</td>
                 </tr>
                 <tr>
                   <td>Total Cost</td>
-                  <td>{order.price ? order.price + 40 : 0}</td>
+                  <td>{order.price ? order.price + 50 : 0}</td>
                 </tr>
                 <tr>
                   <td colSpan={2}>

@@ -52,12 +52,9 @@ class CartDetail(APIView):
 			except:
 				Response(status=status.HTTP_400_BAD_REQUEST)
 			serializer = CartSerializer(cart_objects, many=True)
-			products = Cart.objects.filter(userId=pk).count()
-			items = Cart.objects.filter(userId=pk).aggregate(total=Sum('items'))['total']
-			price = Cart.objects.filter(userId=pk).aggregate(total=Sum(F('items')*F('product__price')))['total']
-			return Response({'cart': serializer.data, 'products': products, 'items': items, 'price': price, 'pages': paginator.num_pages})
+			return Response({'cart': serializer.data, 'pages': paginator.num_pages})
 		except:
-			return Response(status=status.HTTP_202_ACCEPTED)
+			return Response(status=status.HTTP_400_BAD_REQUEST)
 
 	def patch(self, request, pk, format=None):
 		cart_object = self.get_cart(pk) 

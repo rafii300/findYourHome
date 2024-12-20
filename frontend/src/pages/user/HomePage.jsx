@@ -27,8 +27,8 @@ function HomePage() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
-      <h1 className="text-center text-dark border py-2">Product List</h1>
-      <Row className="p-3">
+      <h2 className="text-center text-dark border py-2">Find Your Home!!!</h2>
+      <Row className="p-2">
         {error ? (
           <Message variant={"danger"} message={"Error loading products"} />
         ) : loading ? (
@@ -36,7 +36,7 @@ function HomePage() {
         ) : success ? (
           Object.keys(products).length ? (
             products.map((product) => (
-              <Col className="p-3 d-flex" sm={3} md={2} key={product.Id}>
+              <Col className="p-3 d-flex" md={3} key={product.Id}>
                 <Product product={product} />
               </Col>
             ))

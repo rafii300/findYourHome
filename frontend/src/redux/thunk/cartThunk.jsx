@@ -2,7 +2,6 @@ import {
   Loading,
   Success,
   ListProducts,
-  Update,
   Delete,
   Error,
 } from "../slice/cartSlice";
@@ -34,23 +33,6 @@ export const getUserCart = (Id, page) => async (dispatch) => {
       dispatch(ListProducts(res.data));
     } else {
       dispatch(Error());
-    }
-  } catch (error) {
-    dispatch(Error());
-  }
-};
-
-export const updataCartItem = (Id, cartItem) => async (dispatch) => {
-  const url = `http://127.0.0.1:8000/cart/${Id}/`;
-  try {
-    dispatch(Loading());
-    const res = await axios.patch(url, JSON.stringify(cartItem), {
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-    if (res.status === 200) {
-      dispatch(Update({ Id, cartItem }));
     }
   } catch (error) {
     dispatch(Error());

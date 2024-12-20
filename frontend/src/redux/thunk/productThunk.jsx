@@ -82,26 +82,6 @@ export const updateProduct = (id, product) => async (dispatch) => {
   }
 };
 
-export const reduceProduct = (id, price) => async (dispatch) => {
-  const url = `http://127.0.0.1:8000/product-update/${id}`;
-  try {
-    const res = await axios.patch(
-      url,
-      JSON.stringify({ countInStock: price }),
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    );
-    if (res.status === 200) {
-      dispatch(Success());
-    }
-  } catch (error) {
-    dispatch(Error());
-  }
-};
-
 export const deleteProduct = (Id) => async (dispatch) => {
   const url = `http://127.0.0.1:8000/products/${Id}`;
   try {

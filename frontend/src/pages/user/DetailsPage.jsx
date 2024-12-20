@@ -25,7 +25,6 @@ function DetailsPage() {
             name: product.name,
             image: product.image,
             price: product.price,
-            countInStock: product.countInStock,
           },
           userId: current_user.Id,
           productId: product.Id,
@@ -72,30 +71,22 @@ function DetailsPage() {
             <Table striped bordered>
               <tbody>
                 <tr>
-                  <td>Category</td>
-                  <td>{product.category}</td>
-                </tr>
-                <tr>
-                  <td>Brand</td>
-                  <td>{product.brand}</td>
-                </tr>
-                <tr>
-                  <td>Price</td>
-                  <td>{product.price}</td>
-                </tr>
-                <tr>
-                  <td>In Stock</td>
-                  <td>{product.countInStock}</td>
+                  <td>Area</td>
+                  <td>{product.area}</td>
                 </tr>
                 <tr>
                   <td>Rating</td>
                   <td>{product.rating}</td>
                 </tr>
                 <tr>
+                  <td>Available</td>
+                  <td>{product.available ? "True" : "False"}</td>
+                </tr>
+                <tr>
                   <td colSpan={2}>
                     <ButtonGroup className="d-flex">
                       <Button variant="dark" onClick={() => handleAddToCart()}>
-                        Add to cart
+                        Add to Wishlist
                       </Button>
                     </ButtonGroup>
                   </td>
