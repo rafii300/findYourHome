@@ -65,7 +65,7 @@ function ReceivedOrderPage() {
                           }}
                           className="text-center text-success"
                         >
-                          Deliver
+                          Confirm
                         </td>
                         <td
                           onClick={() => {

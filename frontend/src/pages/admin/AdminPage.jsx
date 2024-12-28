@@ -36,7 +36,7 @@ function AdminPage() {
                     as="h6"
                     className="d-flex flex-row justify-content-center align-items-center"
                   >
-                    Hotel List
+                    Home List
                   </Col>
                   <Col md={4} className="d-flex justify-content-center">
                     <Button
